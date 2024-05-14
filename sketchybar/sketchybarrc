@@ -5,7 +5,7 @@ source "$HOME/.config/sketchybar/icons.sh"  # Loads all defined icons
 
 ITEM_DIR="$HOME/.config/sketchybar/items"     # Directory where the items are configured
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
-FONT="Comic Sans"                             # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+FONT="Hack Nerd Font Mono"                    # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 PADDINGS=3                                    # All paddings use this value (icon, label, background)
 
 # Setting up and starting the helper process
@@ -19,7 +19,8 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/d
 
 # Setting up the general bar appearance of the bar
 bar=(
-	height=35
+	# Height is 41 if display is more space, and 30 if display is regular
+	height=30
 	color=$BAR_COLOR
 	border_width=2
 	border_color=$BAR_BORDER_COLOR
@@ -61,17 +62,15 @@ defaults=(
 sketchybar --default "${defaults[@]}"
 
 # Left
-source "$ITEM_DIR/apple.sh"
+# source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
-source "$ITEM_DIR/front_app.sh"
+# source "$ITEM_DIR/front_app.sh"
 
 # Center
-source "$ITEM_DIR/spotify.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/brew.sh"
-source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/cpu.sh"

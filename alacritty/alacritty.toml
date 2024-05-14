@@ -1,0 +1,20 @@
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.5
+
+[font.normal]
+family = "MonoLisa Nerd Font"
+
+[font.offset]
+x = 0
+y = 3
+
+[shell]
+args = ["new-session", "-A", "-D", "-s", "main"]
+program = "/opt/homebrew/bin/tmux"
+
+[window]
+decorations = "none"
+opacity = 0.9

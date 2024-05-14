@@ -1,12 +1,8 @@
 ctrl - e : yabai -m space --layout bsp
 ctrl - s : yabai -m space --layout stack
 
-ctrl - left : yabai -m space --focus prev || yabai -m space --focus last
-ctrl - right : yabai -m space --focus next || yabai -m space --focus first
-ctrl - down : yabai -m window --focus stack.next || yabai -m window --focus south
-ctrl - up : yabai -m window --focus stack.prev || yabai -m window --focus north
-ctrl + shift -  h : yabai -m window --focus west
-ctrl + shift - l : yabai -m window --focus east
+ctrl - h : yabai -m space --focus prev || yabai -m space --focus last
+ctrl - l : yabai -m space --focus next || yabai -m space --focus first
 
 ctrl - 1 : yabai -m space --focus 1
 ctrl - 2 : yabai -m space --focus 2
@@ -30,18 +26,10 @@ ctrl + shift - 8 : yabai -m window --space 8
 ctrl + shift - 9 : yabai -m window --space 9
 ctrl + shift - 0 : yabai -m window --space 10
 
-ctrl + shift - left : yabai -m window --space prev
-ctrl + shift - right : yabai -m window --space next
-
-ctrl - f : yabai -m window --toggle zoom-fullscreen
-ctrl + cmd - v : yabai -m window --toggle split
+ctrl + shift - h : yabai -m window --space prev
+ctrl + shift - l : yabai -m window --space next
 
 ctrl + cmd - h : yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0
 ctrl + cmd - j : yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20
 ctrl + cmd - k : yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20
 ctrl + cmd - l : yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0
-
-lalt - space : yabai -m window --toggle float; sketchybar --trigger window_focus
-shift + lalt - f : yabai -m window --toggle zoom-fullscreen; sketchybar --trigger window_focus
-lalt - f : yabai -m window --toggle zoom-parent; sketchybar --trigger window_focus
-shift + lalt - 1 : yabai -m window --space 1 && sketchybar --trigger windows_on_spaces
