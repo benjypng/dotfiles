@@ -1,8 +1,8 @@
 ctrl - e : yabai -m space --layout bsp
 ctrl - s : yabai -m space --layout stack
 
-ctrl - h : yabai -m space --focus prev || yabai -m space --focus last
-ctrl - l : yabai -m space --focus next || yabai -m space --focus first
+# ctrl - h : yabai -m space --focus prev || yabai -m space --focus last
+# ctrl - l : yabai -m space --focus next || yabai -m space --focus first
 
 ctrl - 1 : yabai -m space --focus 1
 ctrl - 2 : yabai -m space --focus 2
