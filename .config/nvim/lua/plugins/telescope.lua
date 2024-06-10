@@ -4,15 +4,6 @@
 -- you do for a plugin at the top level, you can do for a dependency.
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
---
-local function project_root()
-  local cwd = vim.fn.getcwd()
-  local git_dir = vim.fn.finddir('.git', cwd)
-  if git_dir ~= '' then
-    return vim.fn.fnamemodify(git_dir, ':h')
-  end
-  return cwd
-end
 
 return {
   { -- Fuzzy Finder (files, lsp, etc)
@@ -37,7 +28,7 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -76,7 +67,6 @@ return {
           },
         },
         defaults = {
-          cwd = project_root(),
           file_ignore_patterns = {
             'node_modules',
           },

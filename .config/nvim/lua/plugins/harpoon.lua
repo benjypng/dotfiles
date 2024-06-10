@@ -15,7 +15,7 @@ return {
       -- REQUIRED
 
       vim.keymap.set("n", "<leader>a", function()
-        harpoon:list():append()
+        harpoon:list():add()
       end)
 
       -- basic telescope configuration
