@@ -142,7 +142,7 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- tsserver = {},
+        tsserver = {},
         eslint = {},
         dockerls = {},
         jsonls = {},
