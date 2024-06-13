@@ -23,7 +23,7 @@ ZSH_THEME="robbyrussell"
 autoload -Uz compinit
 compinit
 
-plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git z zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fpath+=~/.oh-my-zsh/custom/plugins/zsh-completions/src
 
