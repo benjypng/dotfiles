@@ -4,7 +4,15 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     -- calling `setup` is optional for customization
-    require("fzf-lua").setup({})
+    require("fzf-lua").setup({
+      keymap = {
+        fzf = {
+          ["tab"]       = "down",
+          ["shift-tab"] = "up",
+          ["enter"]     = "accept",
+        },
+      },
+    })
     local builtin = require 'fzf-lua'
     -- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     --vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
