@@ -12,6 +12,21 @@ return {
           ["enter"]     = "accept",
         },
       },
+      files = {
+        prompt = 'Files❯ ',
+        cmd = "rg --files --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
+        git_icons = true,                                                      -- show git icons?
+        file_icons = true,                                                     -- show file icons?
+        color_icons = true,                                                    -- colorize file|git icons
+      },
+      grep = {
+        prompt = 'Rg❯ ',
+        input_prompt = 'Grep For❯ ',
+        cmd = "rg --vimgrep --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
+        git_icons = true,                                                        -- show git icons?
+        file_icons = true,                                                       -- show file icons?
+        color_icons = true,                                                      -- colorize file|git icons
+      },
     })
     local builtin = require 'fzf-lua'
     -- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
