@@ -63,12 +63,6 @@ map('n', '<leader>x', "/<C-R>=expand('<cword>')<CR><CR>``cgn")
 -- Find and replace text in visual mode
 map('v', '<C-r>', '"hy:.,$s/<C-r>h//gc<left><left><left>')
 
--- Exit terminal
-map('t', '<Esc>', '<C-\\><C-n><C-o>')
-
--- Go to terminal
-map('n', '<leader>ft', ':terminal<CR>a')
-
 -- Open netrw
 map('n', '<leader>n', ':Explore<CR>')
 

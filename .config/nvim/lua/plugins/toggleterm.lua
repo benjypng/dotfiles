@@ -4,7 +4,7 @@ return {
     version = "*",
     config = function()
       require("toggleterm").setup({
-        direction = 'float',
+        direction = 'horizontal',
         size = 20
       })
       vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
