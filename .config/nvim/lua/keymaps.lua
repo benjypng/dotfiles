@@ -18,9 +18,6 @@ end
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Logseq Build
-map('n', '<leader>B', ':terminal pnpm run build<CR>')
-
 -- Save All
 map('n', ';;', ':wall<CR>')
 
@@ -68,6 +65,9 @@ map('n', '<leader>n', ':Explore<CR>')
 
 -- Fix <C-i>
 map('n', '<C-p>', '<C-I>')
+
+-- Build
+map('n', '<leader>B', ':terminal pnpm run build<CR>')
 
 -- Reload luafile
 vim.keymap.set('n', '<leader>R', ':luafile %<CR>', { desc = 'Reload Luafile' })
