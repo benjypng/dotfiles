@@ -70,6 +70,13 @@ return {
           file_ignore_patterns = {
             'node_modules',
           },
+          layout_strategy = 'horizontal',
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.5,
+            },
+          },
         },
         extensions = {
           ['ui-select'] = {
