@@ -4,10 +4,16 @@
 --  For more options, you can see `:help option-list`
 
 -- Set caret
-vim.o.guicursor = 'n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,a:blinkwait100-blinkoff10-blinkon200-Cursor/lCursor'
+vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20'
+
+-- Set nowrap
+vim.opt.wrap = false
+
+vim.opt.colorcolumn = "80"
 
 -- Make line numbers default
 vim.opt.number = true
+
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
@@ -60,4 +66,4 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
