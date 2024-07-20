@@ -61,7 +61,7 @@ map('n', '<leader>x', "/<C-R>=expand('<cword>')<CR><CR>``cgn")
 map('v', '<C-r>', '"hy:.,$s/<C-r>h//gc<left><left><left>')
 
 -- Open netrw
-map('n', '<leader>n', ':Explore<CR>')
+map('n', '<leader>n', ':Oil<CR>')
 
 -- Fix <C-i>
 map('n', '<C-p>', '<C-I>')
