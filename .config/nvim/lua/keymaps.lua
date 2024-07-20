@@ -67,7 +67,7 @@ map('n', '<leader>n', ':Oil<CR>')
 map('n', '<C-p>', '<C-I>')
 
 -- Build
-map('n', '<leader>B', ':terminal pnpm run build<CR>')
+map('n', '<leader>B', ':terminal npx vite build<CR>')
 
 -- Reload luafile
 vim.keymap.set('n', '<leader>R', ':luafile %<CR>', { desc = 'Reload Luafile' })
