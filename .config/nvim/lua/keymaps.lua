@@ -3,7 +3,7 @@
 -- Abbrev
 vim.cmd.inoreabbrev {
   'clog',
-  'console.log()<Esc>ha',
+  'console.log(` `)<Esc>hhha',
 }
 
 local function map(mode, lhs, rhs, opts)
