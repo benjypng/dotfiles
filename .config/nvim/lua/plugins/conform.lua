@@ -1,6 +1,6 @@
 local function trim_empty_lines_at_end(bufnr)
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
-  while #lines > 0 and lines[#lines]:match("^%s*$") do
+  while #lines > 0 and lines[#lines]:match '^%s*$' do
     table.remove(lines)
   end
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
@@ -44,6 +44,7 @@ return {
         typescriptreact = { 'prettierd' },
         javascript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
+        json = { 'prettierd' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
