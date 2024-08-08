@@ -3,16 +3,17 @@ return {
   opts = {},
   -- Optional dependencies
   -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if prefer nvim-web-devicons
   config = function()
-    require("oil").setup({
+    require('oil').setup {
       columns = {
-        "icon",
-        "size"
+        'icon',
+        'size',
       },
       view_options = {
         show_hidden = true,
       },
-    })
-  end
+      delete_to_trash = true,
+    }
+  end,
 }
