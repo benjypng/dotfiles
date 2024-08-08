@@ -11,6 +11,9 @@ return {
           ['enter'] = 'accept',
         },
       },
+      winopts = {
+        fullscreen = true,
+      },
       files = {
         prompt = 'Files❯ ',
         cmd = "rg --files --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
@@ -26,6 +29,7 @@ return {
         file_icons = true, -- show file icons?
         color_icons = true, -- colorize file|git icons
       },
+      git = {},
     }
     local fzf = require 'fzf-lua'
     vim.keymap.set('n', '<leader>sf', fzf.files, { desc = '[S]earch [F]iles' })
@@ -34,5 +38,8 @@ return {
     vim.keymap.set('n', '<leader>sv', fzf.grep_visual, { desc = '[S]earch [V]isual selection' })
     vim.keymap.set('n', '<leader>sd', fzf.diagnostics_workspace, { desc = '[S]earch [D]iagnostics workspace' })
     vim.keymap.set('n', '<leader>sh', fzf.search_history, { desc = '[S]earch [H]istory' })
+    vim.keymap.set('n', 'gd', fzf.lsp_definitions, { desc = '[G]o to [D]efinition' })
+    vim.keymap.set('n', 'gr', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
+    vim.keymap.set('n', 'st', fzf.git_status, { desc = '[G]o to [D]eclarations' })
   end,
 }
