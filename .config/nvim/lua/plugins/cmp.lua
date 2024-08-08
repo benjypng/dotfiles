@@ -15,6 +15,7 @@ return {
           end
           return 'make install_jsregexp'
         end)(),
+
         dependencies = {
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
@@ -26,6 +27,15 @@ return {
             end,
           },
         },
+        config = function()
+          -- Assuming your snippets are in ~/.config/nvim/snippets/
+          -- Adjust this path if your snippets are stored elsewhere
+          local snippet_directory = vim.fn.stdpath 'config' .. '/lua/snippets'
+
+          -- Load all Lua snippets from the directory
+          require('luasnip.loaders.from_lua').load { { paths = snippet_directory } }
+          require('luasnip.loaders.from_vscode').lazy_load()
+        end,
       },
       'saadparwaiz1/cmp_luasnip',
 

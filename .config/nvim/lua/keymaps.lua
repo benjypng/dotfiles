@@ -1,5 +1,6 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+
 -- Abbrev
 vim.cmd.inoreabbrev {
   'clog',
