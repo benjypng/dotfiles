@@ -12,7 +12,7 @@ return {
         },
       },
       winopts = {
-        fullscreen = true,
+        fullscreen = false,
       },
       files = {
         prompt = 'Files❯ ',
