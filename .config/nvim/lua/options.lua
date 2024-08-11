@@ -6,11 +6,6 @@
 -- Set caret
 vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20'
 
--- Set undercurl
-vim.opt.termguicolors = true
-vim.cmd [[let &t_Cs = "\e[4:3m"]]
-vim.cmd [[let &t_Ce = "\e[4:0m"]]
-
 -- Set nowrap
 vim.opt.wrap = false
 
