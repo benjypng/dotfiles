@@ -23,18 +23,16 @@ return {
           {
             'rafamadriz/friendly-snippets',
             config = function()
-              require('luasnip.loaders.from_vscode').lazy_load()
+              require('luasnip.loaders.from_vscode').lazy_load {}
             end,
           },
         },
-        config = function()
-          -- Assuming your snippets are in ~/.config/nvim/snippets/
-          -- Adjust this path if your snippets are stored elsewhere
-          local snippet_directory = vim.fn.stdpath 'config' .. '/lua/snippets'
 
-          -- Load all Lua snippets from the directory
-          require('luasnip.loaders.from_lua').load { { paths = snippet_directory } }
-          require('luasnip.loaders.from_vscode').lazy_load()
+        config = function()
+          local snippet_path = vim.fn.stdpath 'config' .. '/lua/snippets/'
+
+          vim.opt.runtimepath = vim.opt.runtimepath + '~/.config/nvim/lua/snippets' -- THIS LINE IS CRITICAL
+          require('luasnip.loaders.from_vscode').load { { paths = snippet_path } }
         end,
       },
       'saadparwaiz1/cmp_luasnip',
