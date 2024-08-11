@@ -1,69 +1,44 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/sqlite/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/sqlite/include"
+# Path
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# Additional PATH
+export PATH="$PATH:/sbin"
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-eval "$(fzf --zsh)"
-
-ZSH_THEME="robbyrussell"
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
-autoload -Uz compinit
-compinit
-
-plugins=(git z zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fpath+=~/.oh-my-zsh/custom/plugins/zsh-completions/src
-
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty bracketed-paste accept-line push-line-or-edit)
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_USE_ASYNC=true
-
-alias vim="nvim"
-alias c="clear"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.oh-my-zsh/oh-my-zsh.sh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # pnpm
 export PNPM_HOME="/Users/ben/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-export PATH="$PATH:/sbin"
+export PATH="$PNPM_HOME:$PATH"
+
+# Language
+export LANG=en_US.UTF-8
+
+# Enable prompt substitution
+setopt prompt_subst
+
+# Enable colors
+autoload -U colors && colors
+
+# Enable theme
+source ~/.zsh/themes/robbyrussell.zsh-theme
+
+# Aliases
+alias vim="nvim"
+alias c="clear"
+
+#####################
+### PLUGINS START ###
+#####################
+
+# Must be after compinit
+eval "$(zoxide init zsh)"
+
+# Autosuggestions (if you want to keep this feature)
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+
+# This needs to be at the end of .zshrc. RTFM
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
