@@ -30,8 +30,7 @@ return {
 
         config = function()
           local snippet_path = vim.fn.stdpath 'config' .. '/lua/snippets/'
-
-          vim.opt.runtimepath = vim.opt.runtimepath + '~/.config/nvim/lua/snippets' -- THIS LINE IS CRITICAL
+          vim.opt.runtimepath:append(snippet_path)
           require('luasnip.loaders.from_vscode').load { { paths = snippet_path } }
         end,
       },
