@@ -27,6 +27,7 @@ source ~/.zsh/themes/robbyrussell.zsh-theme
 # Aliases
 alias vim="nvim"
 alias c="clear"
+alias la="ls -la"
 
 #####################
 ### PLUGINS START ###
