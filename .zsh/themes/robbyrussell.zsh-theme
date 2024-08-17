@@ -27,10 +27,27 @@ function git_prompt_info() {
 }
 # robbyrussell ZSH Theme - Debug Version
 
-PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%}"
+# PROMPT="%(?:%{$fg_bold[green]%}%1{➜%} :%{$fg_bold[red]%}%1{➜%} ) %{$fg[cyan]%}%c%{$reset_color%}"
+# PROMPT+=' $(git_prompt_info)'
+#
+# ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+# ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+# ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}%1{✗%}"
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+# Rose Pine Color Palette
+local text='#e0def4'
+local love='#eb6f92'
+local gold='#f6c177'
+local rose='#ea9a97'
+local pine='#3e8fb0'
+local foam='#9ccfd8'
+local iris='#c4a7e7'
+
+PROMPT="%(?:%F{$pine}%1{➜%} :%F{$love}%1{➜%} ) %F{$foam}%c%f"
 PROMPT+=' $(git_prompt_info)'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}%1{✗%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{$iris}git:(%F{$rose}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f "
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{$iris}) %F{$gold}%1{✗%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%F{$iris})"

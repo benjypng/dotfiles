@@ -21,3 +21,6 @@ program = "/opt/homebrew/bin/tmux"
 decorations = "none"
 startup_mode = "Maximized" 
 opacity = 0.9
+
+[colors]
+draw_bold_text_with_bright_colors = true
