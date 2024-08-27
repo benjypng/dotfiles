@@ -1,2 +1,4 @@
 .config/gcloud
 .DS_Store
+.config/configstore
+.config/rstudio
