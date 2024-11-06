@@ -2,3 +2,5 @@
 .DS_Store
 .config/configstore
 .config/rstudio
+.config/AWS\ VPN\ Client
+.config/AWSVPNClient
