@@ -17,17 +17,17 @@ return {
       files = {
         prompt = 'Files❯ ',
         cmd = "rg --files --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
-        git_icons = true, -- show git icons?
-        file_icons = true, -- show file icons?
-        color_icons = true, -- colorize file|git icons
+        git_icons = true,                                                      -- show git icons?
+        file_icons = true,                                                     -- show file icons?
+        color_icons = true,                                                    -- colorize file|git icons
       },
       grep = {
         prompt = 'Rg❯ ',
         input_prompt = 'Grep For❯ ',
         cmd = "rg --vimgrep --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
-        git_icons = true, -- show git icons?
-        file_icons = true, -- show file icons?
-        color_icons = true, -- colorize file|git icons
+        git_icons = true,                                                        -- show git icons?
+        file_icons = true,                                                       -- show file icons?
+        color_icons = true,                                                      -- colorize file|git icons
       },
       git = {},
     }
@@ -40,7 +40,8 @@ return {
     vim.keymap.set('n', '<leader>sh', fzf.search_history, { desc = '[S]earch [H]istory' })
     vim.keymap.set('n', '<leader>st', fzf.git_status, { desc = '[S]earch git s[T]atus' })
     vim.keymap.set('n', '<leader>ca', fzf.lsp_code_actions, { desc = '[C]ode [A]ctions' })
-    -- vim.keymap.set('n', '<leader>gd', fzf.lsp_definitions, { desc = '[G]o to [D]efinition' })
-    vim.keymap.set('n', '<leader>gr', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
+    vim.keymap.set('n', 'gd', '<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>', { desc = '[G]o to [D]efinition' })
+    -- vim.keymap.set('n', 'gd', fzf.lsp_definitions, { desc = '[G]o to [D]efinition' })
+    vim.keymap.set('n', 'gr', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
   end,
 }
