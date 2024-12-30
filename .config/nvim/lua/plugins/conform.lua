@@ -23,7 +23,7 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = {
-        stop_after_first = true,
+        stop_after_first = false, -- Changed to false to allow multiple formatters
         function(bufnr)
           -- Disable "format_on_save lsp_fallback" for languages that don't
           -- have a well standardized coding style. You can add additional
@@ -40,18 +40,21 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
+        typescript = { 'eslint_d', 'prettierd' },  -- Run eslint_d first, then prettierd
+        typescriptreact = { 'eslint_d', 'prettierd' },
+        javascript = { 'eslint_d', 'prettierd' },
+        javascriptreact = { 'eslint_d', 'prettierd' },
         json = { 'prettierd' },
         css = { 'prettierd' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+      },
+      -- Add ESLint formatter configuration
+      formatters = {
+        eslint_d = {
+          -- Tell conform.nvim to use eslint_d's --fix option
+          command = "eslint_d",
+          args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
+          stdin = true,
+        },
       },
     },
   },
