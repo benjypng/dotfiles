@@ -10,6 +10,20 @@ return {
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
+    keys = {
+      {
+        '<leader>ff',
+        function()
+          require('conform').format {
+            formatters = { 'eslint_d' },
+            async = true,
+            lsp_fallback = false,
+          }
+        end,
+        mode = '',
+        desc = 'Auto-[f]ix with eslint_d',
+      },
+    },
     opts = {
       notify_on_error = false,
       format_on_save = {
