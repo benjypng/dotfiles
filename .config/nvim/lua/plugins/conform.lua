@@ -10,24 +10,10 @@ return {
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
-    keys = {
-      {
-        '<leader>ff',
-        function()
-          require('conform').format({
-            formatters = { 'eslint_d' },
-            async = true,
-            lsp_fallback = false,
-          })
-        end,
-        mode = '',
-        desc = '[F]ix with eslint_d',
-      },
-    },
     opts = {
       notify_on_error = false,
       format_on_save = {
-        stop_after_first = true, -- Changed to false to allow multiple formatters
+        stop_after_first = false, -- Changed to false to allow multiple formatters
         timeout_ms = 500,
         function(bufnr)
           -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -51,15 +37,6 @@ return {
         javascriptreact = { 'prettierd' },
         json = { 'prettierd' },
         css = { 'prettierd' },
-      },
-      -- Add ESLint formatter configuration
-      formatters = {
-        eslint_d = {
-          -- Tell conform.nvim to use eslint_d's --fix option
-          command = "eslint_d",
-          args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
-          stdin = true,
-        },
       },
     },
   },
