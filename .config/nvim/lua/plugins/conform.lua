@@ -14,17 +14,21 @@ return {
       {
         '<leader>ff',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format({
+            formatters = { 'eslint_d' },
+            async = true,
+            lsp_fallback = false,
+          })
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = '[F]ix with eslint_d',
       },
     },
     opts = {
       notify_on_error = false,
       format_on_save = {
-        stop_after_first = false, -- Changed to false to allow multiple formatters
-        timeout_ms = 3000,
+        stop_after_first = true, -- Changed to false to allow multiple formatters
+        timeout_ms = 500,
         function(bufnr)
           -- Disable "format_on_save lsp_fallback" for languages that don't
           -- have a well standardized coding style. You can add additional
@@ -33,7 +37,7 @@ return {
           trim_empty_lines_at_end(bufnr)
           local disable_filetypes = { c = true, cpp = true }
           return {
-            timeout_ms = 3000,
+            timeout_ms = 500,
             lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
           }
         end,
@@ -41,10 +45,10 @@ return {
       formatters_by_ft = {
         lua = { 'lua_ls' },
         python = { 'isort', 'black' },
-        typescript = { 'prettierd', 'eslint_d' },
-        typescriptreact = { 'prettierd', 'eslint_d' },
-        javascript = { 'prettierd', 'eslint_d' },
-        javascriptreact = { 'prettierd', 'eslint_d' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
+        javascript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
         json = { 'prettierd' },
         css = { 'prettierd' },
       },
