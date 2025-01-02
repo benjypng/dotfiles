@@ -29,7 +29,7 @@ return {
         end,
       },
       formatters_by_ft = {
-        lua = { 'lua_ls' },
+        lua = { 'stylua' },
         python = { 'isort', 'black' },
         typescript = { 'prettierd' },
         typescriptreact = { 'prettierd' },
