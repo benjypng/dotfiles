@@ -6,14 +6,19 @@ size = 14
 
 [font.normal]
 family = "MonoLisa Nerd Font"
+style = "Regular"
+
+[font.italic]
+family = "MonoLisa Nerd Font"
+style = "Italic"
 
 [font.offset]
 y = 3
 x = 0
 
-[terminal.shell]
-args = ["new-session", "-A", "-D", "-s", "main"]
-program = "/opt/homebrew/bin/tmux"
+# [terminal.shell]
+# args = ["new-session", "-A", "-D", "-s", "main"]
+# program = "/opt/homebrew/bin/tmux"
 
 [window]
 decorations = "none"

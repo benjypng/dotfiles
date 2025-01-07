@@ -3,19 +3,19 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'typescript', 'javascript','lua', },
+      ensure_installed = { 'typescript', 'javascript', 'lua' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
         enable = true,
         disable = function(lang, buf)
-           local max_filesize = 800 * 1024 -- 100 KB
-           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-           if ok and stats and stats.size > max_filesize then
-             return true
-           end
-         end,
-       },
+          local max_filesize = 1024 * 1024
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_filesize then
+            return true
+          end
+        end,
+      },
       indent = { enable = true, disable = { 'ruby', 'html' } },
     },
     config = function(_, opts)
