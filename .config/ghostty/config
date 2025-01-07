@@ -4,3 +4,4 @@ adjust-cursor-thickness = 10
 macos-titlebar-style = hidden
 command = /opt/homebrew/bin/tmux
 adjust-cell-height = 2
+adjust-cell-width = -1
