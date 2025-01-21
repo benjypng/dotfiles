@@ -16,18 +16,18 @@ return {
       },
       files = {
         prompt = 'Files❯ ',
-        cmd = "rg --files --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
-        git_icons = true,                                                      -- show git icons?
-        file_icons = true,                                                     -- show file icons?
-        color_icons = true,                                                    -- colorize file|git icons
+        cmd = 'fd --type f --exclude .git --exclude node_modules',
+        git_icons = false, -- show git icons?
+        file_icons = true, -- show file icons?
+        color_icons = false, -- colorize file|git icons
       },
       grep = {
         prompt = 'Rg❯ ',
         input_prompt = 'Grep For❯ ',
         cmd = "rg --vimgrep --hidden --glob '!.git/*' --glob '!node_modules/*'", -- Custom rg command
-        git_icons = true,                                                        -- show git icons?
-        file_icons = true,                                                       -- show file icons?
-        color_icons = true,                                                      -- colorize file|git icons
+        git_icons = true, -- show git icons?
+        file_icons = true, -- show file icons?
+        color_icons = true, -- colorize file|git icons
       },
       git = {},
     }
