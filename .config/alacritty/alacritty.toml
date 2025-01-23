@@ -16,9 +16,9 @@ style = "Italic"
 y = 3
 x = 0
 
-# [terminal.shell]
-# args = ["new-session", "-A", "-D", "-s", "main"]
-# program = "/opt/homebrew/bin/tmux"
+[terminal.shell]
+args = ["new-session", "-A", "-D", "-s", "main"]
+program = "/opt/homebrew/bin/tmux"
 
 [window]
 decorations = "none"
