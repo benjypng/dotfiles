@@ -1,14 +1,14 @@
 return {
   {
     'akinsho/toggleterm.nvim',
-    version = "*",
+    version = '*',
     config = function()
-      require("toggleterm").setup({
+      require('toggleterm').setup {
         direction = 'horizontal',
-        size = 20
-      })
+        size = 7,
+      }
       vim.keymap.set('n', '<leader>tt', ':ToggleTerm<CR>')
       vim.keymap.set('t', '<esc>', '<C-\\><C-n>:ToggleTerm<CR>')
-    end
-  }
+    end,
+  },
 }
