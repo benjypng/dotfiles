@@ -16,7 +16,6 @@ return {
         stop_after_first = true,
         timeout_ms = 500,
         function(bufnr)
-          -- Call the function to trim empty lines before formatting
           trim_empty_lines_at_end(bufnr)
           local disable_filetypes = { c = true, cpp = true }
           return {
@@ -36,13 +35,5 @@ return {
         css = { 'prettierd' },
       },
     },
-    config = function()
-      -- Ensure empty line trimming on every save
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        callback = function()
-          trim_empty_lines_at_end(vim.api.nvim_get_current_buf())
-        end,
-      })
-    end,
   },
 }
