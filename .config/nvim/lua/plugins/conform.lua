@@ -10,30 +10,13 @@ return {
   { -- Autoformat
     'stevearc/conform.nvim',
     lazy = false,
-    keys = {
-      {
-        '<leader>ff',
-        function()
-          require('conform').format {
-            formatters = { 'eslint_d' },
-            async = true,
-            lsp_fallback = false,
-          }
-        end,
-        mode = '',
-        desc = 'Auto-[f]ix with eslint_d',
-      },
-    },
     opts = {
       notify_on_error = false,
       format_on_save = {
-        stop_after_first = false, -- Changed to false to allow multiple formatters
+        stop_after_first = true,
         timeout_ms = 500,
         function(bufnr)
-          -- Disable "format_on_save lsp_fallback" for languages that don't
-          -- have a well standardized coding style. You can add additional
-          -- languages here or re-enable it for the disabled ones.
-          -- Call the function to trim empty lines
+          -- Call the function to trim empty lines before formatting
           trim_empty_lines_at_end(bufnr)
           local disable_filetypes = { c = true, cpp = true }
           return {
@@ -53,6 +36,13 @@ return {
         css = { 'prettierd' },
       },
     },
+    config = function()
+      -- Ensure empty line trimming on every save
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        callback = function()
+          trim_empty_lines_at_end(vim.api.nvim_get_current_buf())
+        end,
+      })
+    end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et
