@@ -16,7 +16,7 @@ return {
       },
       files = {
         prompt = 'Files❯ ',
-        cmd = 'fd --type f --hidden --exclude .git --exclude node_modules', -- Added --hidden
+        cmd = 'fd --type f --hidden --exclude .git --exclude node_modules --no-ignore',
         git_icons = false,
         file_icons = true,
         color_icons = true, -- Enabled for better visibility
