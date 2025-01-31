@@ -13,9 +13,11 @@ return {
           return 'make install_jsregexp'
         end)(),
         config = function()
-          local snippet_path = vim.fn.stdpath 'config' .. '/lua/snippets/'
-          vim.opt.runtimepath:append(snippet_path)
-          require('luasnip.loaders.from_vscode').load { { paths = snippet_path } }
+          local snippet_path = vim.fn.stdpath 'config' .. '/lua/snippets'
+          vim.opt.runtimepath:prepend(snippet_path)
+          require('luasnip.loaders.from_lua').load {
+            paths = snippet_path,
+          }
         end,
       },
       'saadparwaiz1/cmp_luasnip',
@@ -41,11 +43,19 @@ return {
         completion = { completeopt = 'menu,menuone,noinsert' },
 
         mapping = cmp.mapping.preset.insert {
-          ['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<Enter>'] = cmp.mapping.confirm { select = true },
+          ['<Enter>'] = cmp.mapping.confirm { select = false }, -- Fix: Prevent auto-confirming suggestions
           ['<C-Space>'] = cmp.mapping.complete {},
           ['<C-l>'] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
@@ -65,6 +75,7 @@ return {
         end,
         sources = {
           { name = 'nvim_lsp' },
+          { name = 'luasnip' }, -- Fix: Add LuaSnip as a source
           { name = 'path' },
         },
       }
