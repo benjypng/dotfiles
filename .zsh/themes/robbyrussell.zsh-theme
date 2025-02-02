@@ -44,7 +44,7 @@ local pine='#3e8fb0'
 local foam='#9ccfd8'
 local iris='#c4a7e7'
 
-PROMPT="%(?:%F{$pine}%1{➜%} :%F{$love}%1{➜%} ) %F{$foam}%c%f"
+PROMPT="%(?:%F{$pine}%1{➜%} :%F{$love}%1{➜%} ) %F{$foam}%~%f"
 PROMPT+=' $(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{$iris}git:(%F{$rose}"
