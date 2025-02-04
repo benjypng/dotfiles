@@ -1,14 +1,13 @@
 return {
-  { -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
       ensure_installed = { 'typescript', 'javascript', 'lua' },
-      -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
         enable = true,
-        disable = function(lang, buf)
+        disable = function(_, buf)
           local max_filesize = 1024 * 1024
           local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
           if ok and stats and stats.size > max_filesize then
@@ -24,4 +23,3 @@ return {
     end,
   },
 }
--- vim: ts=2 sts=2 sw=2 et

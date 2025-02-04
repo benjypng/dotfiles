@@ -41,6 +41,6 @@ return {
     vim.keymap.set('n', '<leader>ca', fzf.lsp_code_actions, { desc = '[C]ode [A]ctions' })
     vim.keymap.set('n', 'gd', '<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>', { desc = '[G]o to [D]efinition' })
     -- vim.keymap.set('n', 'gd', '<Cmd>vsplit | lua require("fzf-lua").lsp_definitions()<CR>', { desc = '[G]o to [D]efinition', silent = true, noremap = true })
-    vim.keymap.set('n', 'gr', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
+    vim.keymap.set('n', '<leader>sd', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
   end,
 }
