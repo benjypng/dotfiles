@@ -1,6 +1,5 @@
 return {
   'ibhagwan/fzf-lua',
-  -- optional for icon support
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require('fzf-lua').setup {
@@ -19,12 +18,12 @@ return {
         cmd = 'fd --type f --hidden --exclude .git --exclude node_modules --exclude dist --exclude build --no-ignore',
         git_icons = false,
         file_icons = true,
-        color_icons = true, -- Enabled for better visibility
+        color_icons = true,
       },
       grep = {
         prompt = 'Rg❯ ',
         input_prompt = 'Grep For❯ ',
-        cmd = [[rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' --glob '!node_modules/*']], -- Fixed rg command
+        cmd = [[rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' --glob '!node_modules/*']],
         git_icons = false,
         file_icons = true,
         color_icons = true,

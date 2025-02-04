@@ -1,5 +1,5 @@
 return {
-  { -- Autocompletion
+  {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
@@ -16,7 +16,7 @@ return {
           local snippet_path = vim.fn.stdpath 'config' .. '/lua/snippets'
           vim.opt.runtimepath:prepend(snippet_path)
           require('luasnip.loaders.from_lua').load {
-            paths = snippet_path,
+            paths = { snippet_path },
           }
         end,
       },
@@ -44,10 +44,10 @@ return {
 
         mapping = cmp.mapping.preset.insert {
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif cmp.visible() then
+            if cmp.visible() then
               cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
             else
               fallback()
             end

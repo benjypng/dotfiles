@@ -7,7 +7,7 @@ local function trim_empty_lines_at_end(bufnr)
 end
 
 return {
-  { -- Autoformat
+  {
     'stevearc/conform.nvim',
     lazy = false,
     opts = {
