@@ -167,4 +167,4 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
     if.app-id = 'com.culturedcode.ThingsMac'
-    run = ['layout floating']  
+    run = ['layout floating']
