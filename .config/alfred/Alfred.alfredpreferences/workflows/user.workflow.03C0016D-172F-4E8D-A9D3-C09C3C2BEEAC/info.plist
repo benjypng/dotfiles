@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>541376D6-7AC3-4373-A117-3FB9BF91A827</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A1B05F98-C0B2-412B-954B-5A5DF0FDD40B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>hkgnp</string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Copy Projects-Areas-Archives from Things3</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>cp</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Copy Things3 Projects-Areas-Archives</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>541376D6-7AC3-4373-A117-3FB9BF91A827</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>import shutil
+
+import things
+
+# copy projects
+proj_dict = things.projects(area="Sp4nv1r797xNr43GXGtnHq", include_items=True)
+projects_list = [d["title"] for d in proj_dict]
+projects_list.sort()
+with open("projects.md", "w") as f:
+    for line in projects_list:
+        f.write(f"- [[{line}]]\n")
+shutil.move("projects.md", "/Users/ben/logseq/pages/projects.md")
+
+# copy areas
+areas_dict = things.projects(area="8msRuuG4PQ13Mp2hfqT3nH", include_items=True)
+areas_list = [d["title"] for d in areas_dict]
+areas_list.sort()
+with open("areas.md", "w") as f:
+    for line in areas_list:
+        f.write(f"- [[{line}]]\n")
+shutil.move("areas.md", "/Users/ben/logseq/pages/areas.md")
+
+# copy archives
+archi_dict = things.projects(area="Y32KFyB5rVkhBmRmHHhPWE", include_items=True)
+archi_list = [d["title"] for d in archi_dict]
+archi_list.sort()
+with open("archives.md", "w") as f:
+    for line in archi_list:
+        f.write(f"- [[{line}]]\n")
+shutil.move("archives.md", "/Users/ben/logseq/pages/archives.md")</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A1B05F98-C0B2-412B-954B-5A5DF0FDD40B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>541376D6-7AC3-4373-A117-3FB9BF91A827</key>
+		<dict>
+			<key>xpos</key>
+			<real>140</real>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+		<key>A1B05F98-C0B2-412B-954B-5A5DF0FDD40B</key>
+		<dict>
+			<key>xpos</key>
+			<real>335</real>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

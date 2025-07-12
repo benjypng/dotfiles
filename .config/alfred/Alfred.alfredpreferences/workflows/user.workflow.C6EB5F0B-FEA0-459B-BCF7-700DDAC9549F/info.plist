@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>D42489EE-06A4-4478-9B33-06F81E375C04</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1B9533AE-727E-43C6-BB89-CB4FE58D06A0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string></string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Sync Things3 SQLite</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>st</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Sync Things3 SQLite</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D42489EE-06A4-4478-9B33-06F81E375C04</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>#!/bin/bash
+
+# Set the path to your Things database
+THINGS_DB="$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/ThingsData-L9V74/Things Database.thingsdatabase/main.sqlite"
+
+# Set the path to your Logseq vault
+LOGSEQ_VAULT="$HOME/Documents/logseq_vault/journals"
+
+# Get today's date in the format YYYY_MM_DD
+TODAY=$(date +%Y_%m_%d)
+
+# Set the path to today's journal file
+JOURNAL_FILE="$LOGSEQ_VAULT/${TODAY}.md"
+
+# Your Things3 auth token
+AUTH_TOKEN="5aNAZr6dSWSfeVNlCwUGdA"
+
+# SQL query to get tasks
+QUERY="SELECT uuid, title FROM TMTask WHERE trashed = 0 AND status = 0 AND type = 0 AND project IS NULL AND area IS NULL ORDER BY creationDate DESC"
+
+# Function to URL encode a string
+urlencode() {
+    local string="${1}"
+    local strlen=${#string}
+    local encoded=""
+    local pos c o
+
+    for (( pos=0 ; pos&lt;strlen ; pos++ )); do
+        c=${string:$pos:1}
+        case "$c" in
+            [-_.~a-zA-Z0-9] ) o="${c}" ;;
+            * )               printf -v o '%%%02x' "'$c"
+        esac
+        encoded+="${o}"
+    done
+    echo "${encoded}"
+}
+
+# Execute the query and process each task
+sqlite3 "$THINGS_DB" "$QUERY" | while IFS='|' read -r uuid title; do
+    # Write task to Logseq journal file, ensuring it's on a new line
+    echo "" &gt;&gt; "$JOURNAL_FILE"  # This adds a blank line before each task
+    echo "- $title #inbox" &gt;&gt; "$JOURNAL_FILE"
+    
+    # URL encode the title
+    encoded_title=$(urlencode "$title")
+    
+    # Mark task as completed in Things3 using x-callback-url
+    open "things:///update?auth-token=$AUTH_TOKEN&amp;id=$uuid&amp;completed=true"
+    
+    echo "Processed task: $title"
+done
+
+echo "Script completed. Tasks have been added to $JOURNAL_FILE and marked as completed in Things3."</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1B9533AE-727E-43C6-BB89-CB4FE58D06A0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>1B9533AE-727E-43C6-BB89-CB4FE58D06A0</key>
+		<dict>
+			<key>xpos</key>
+			<real>330</real>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+		<key>D42489EE-06A4-4478-9B33-06F81E375C04</key>
+		<dict>
+			<key>xpos</key>
+			<real>140</real>
+			<key>ypos</key>
+			<real>150</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>1685A66B-9BF6-4A62-AFA4-3E994FAB2079</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>73219517-8C04-467A-86FC-778BBF3082E2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>73219517-8C04-467A-86FC-778BBF3082E2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>135CF270-8369-4AAA-A027-225BA08897D6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>76B5E310-F791-46EC-97AD-52DA0486B7F9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>91C5E3AA-72BC-4B39-89C8-F8132F7EE76E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7CE1256C-7564-4DFE-9B9F-BDB4C4FE9F7A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8685F8E3-A090-4528-92FC-170D145022DF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8685F8E3-A090-4528-92FC-170D145022DF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>76B5E310-F791-46EC-97AD-52DA0486B7F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>hkgnp</string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Notion Quick Note</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>#!/bin/bash
+
+query="$1"
+
+curl -X POST 'https://api.notion.com/v1/pages' \
+-H 'Authorization: Bearer secret_h7hsWZxaXbdudfqRIacisj9NTFi5nNRGLBXfWEOJoEX' \
+-H 'Content-Type: application/json' \
+-H 'Notion-Version: 2022-06-28' \
+-d '{
+ "parent": {
+   "database_id": "153460200e728071bdbaf816464f79fd"
+ },
+ "properties": {
+   "Title": {
+     "type": "title",
+     "title": [
+       {
+         "type": "text",
+         "text": {
+           "content": "'"$query"'"
+         }
+       }
+     ]
+   }
+ }
+}'</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>73219517-8C04-467A-86FC-778BBF3082E2</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>no</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Quick note to Notion</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1685A66B-9BF6-4A62-AFA4-3E994FAB2079</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Sent to Notion</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>135CF270-8369-4AAA-A027-225BA08897D6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>logseq://x-callback-url/quickCapture?url=&amp;title=&amp;append=true&amp;page={var:split1}&amp;content={var:split2}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>91C5E3AA-72BC-4B39-89C8-F8132F7EE76E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ls-</string>
+				<key>subtext</key>
+				<string>Using Logseq's quickCapture</string>
+				<key>text</key>
+				<string>Quick note to Logseq (custom page)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>7CE1256C-7564-4DFE-9B9F-BDB4C4FE9F7A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>function run(argv) {
+  let query = argv[0];
+  query = query.replace(" ", "%")
+  return query;
+}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8685F8E3-A090-4528-92FC-170D145022DF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>delimiter</key>
+				<string>%</string>
+				<key>discardemptyarguments</key>
+				<false/>
+				<key>outputas</key>
+				<integer>0</integer>
+				<key>trimarguments</key>
+				<true/>
+				<key>variableprefix</key>
+				<string>split</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.split</string>
+			<key>uid</key>
+			<string>76B5E310-F791-46EC-97AD-52DA0486B7F9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This Alfred workflow adds a Quick Note to an already open Logseq instance using the quickCapture method.</string>
+	<key>uidata</key>
+	<dict>
+		<key>135CF270-8369-4AAA-A027-225BA08897D6</key>
+		<dict>
+			<key>xpos</key>
+			<real>495</real>
+			<key>ypos</key>
+			<real>125</real>
+		</dict>
+		<key>1685A66B-9BF6-4A62-AFA4-3E994FAB2079</key>
+		<dict>
+			<key>xpos</key>
+			<real>150</real>
+			<key>ypos</key>
+			<real>125</real>
+		</dict>
+		<key>73219517-8C04-467A-86FC-778BBF3082E2</key>
+		<dict>
+			<key>xpos</key>
+			<real>325</real>
+			<key>ypos</key>
+			<real>125</real>
+		</dict>
+		<key>76B5E310-F791-46EC-97AD-52DA0486B7F9</key>
+		<dict>
+			<key>xpos</key>
+			<real>475</real>
+			<key>ypos</key>
+			<real>360</real>
+		</dict>
+		<key>7CE1256C-7564-4DFE-9B9F-BDB4C4FE9F7A</key>
+		<dict>
+			<key>xpos</key>
+			<real>45</real>
+			<key>ypos</key>
+			<real>330</real>
+		</dict>
+		<key>8685F8E3-A090-4528-92FC-170D145022DF</key>
+		<dict>
+			<key>xpos</key>
+			<real>270</real>
+			<key>ypos</key>
+			<real>330</real>
+		</dict>
+		<key>91C5E3AA-72BC-4B39-89C8-F8132F7EE76E</key>
+		<dict>
+			<key>xpos</key>
+			<real>620</real>
+			<key>ypos</key>
+			<real>330</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>v0.0.3</string>
+	<key>webaddress</key>
+	<string>https://hkgnp.vercel.app/hkgnp</string>
+</dict>
+</plist>
