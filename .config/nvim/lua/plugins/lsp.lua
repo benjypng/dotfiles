@@ -6,6 +6,7 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
+
       {
         'saghen/blink.cmp',
         dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -38,6 +39,7 @@ return {
         },
         opts_extend = { 'sources.default' },
       },
+
       {
         'pmizio/typescript-tools.nvim',
         dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -54,7 +56,7 @@ return {
 
       local servers = {
         dockerls = {},
-        eslint_d = {},
+        eslint = {},
         html = {},
         jsonls = {
           settings = {
@@ -105,6 +107,19 @@ return {
         virtual_text = { spacing = 0, prefix = '' },
       })
 
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        callback = function(args)
+          local buf = args.buf
+          local clients = vim.lsp.get_active_clients { bufnr = buf }
+          for _, client in ipairs(clients) do
+            if client.server_capabilities.documentFormattingProvider then
+              vim.lsp.buf.format { bufnr = buf }
+              return
+            end
+          end
+        end,
+      })
+
       -- Auto-commands for LSP
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -114,7 +129,7 @@ return {
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               callback = function()
-                vim.defer_fn(vim.lsp.buf.document_highlight, 150) -- Built-in debounce
+                vim.defer_fn(vim.lsp.buf.document_highlight, 150)
               end,
             })
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
