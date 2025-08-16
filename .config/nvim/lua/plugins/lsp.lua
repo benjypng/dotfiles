@@ -59,7 +59,10 @@ return {
           vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
         end
 
-        map('n', 'gd', function() vim.cmd("vsplit") vim.lsp.buf.definition() end, 'LSP: Go to Definition')
+        map('n', 'gd', function()
+          vim.cmd 'vsplit'
+          vim.lsp.buf.definition()
+        end, 'LSP: Go to Definition')
         map('n', 'gD', vim.lsp.buf.declaration, 'LSP: Go to Declaration')
         map('n', 'gi', vim.lsp.buf.implementation, 'LSP: Go to Implementation')
         map('n', 'gr', vim.lsp.buf.references, 'LSP: References')
@@ -92,12 +95,11 @@ return {
 
       local ensure = {
         'lua_ls',
-        'bashls',
-        'jsonls',
-        'yamlls',
-        'html',
-        'cssls',
-        'ts_ls',
+        --     'bashls',
+        --     'jsonls',
+        --     'yamlls',
+        --     'html',
+        --     'cssls',
       }
 
       require('mason-lspconfig').setup {
@@ -170,6 +172,24 @@ return {
     'saghen/blink.cmp',
     event = 'InsertEnter',
     opts = {
+      -- Show docs automatically when you highlight a completion item
+      completion = {
+        menu = {
+          -- optional: if you also want the menu to open automatically
+          auto_show = true,
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200, -- tweak to taste
+        },
+        -- make sure LSP items are in your source list (docs come from here)
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        -- optional: enable ghost text preview
+        ghost_text = { enabled = true },
+      },
+
       -- Defaults are good; you can add sources/snippets/mappings here.
       keymap = {
         -- Tab to move forward
