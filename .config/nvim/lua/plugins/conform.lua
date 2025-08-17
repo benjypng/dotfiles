@@ -12,28 +12,25 @@ return {
     lazy = false,
     opts = {
       notify_on_error = false,
-      format_on_save = {
-        stop_after_first = true,
-        timeout_ms = 500,
-        function(bufnr)
-          trim_empty_lines_at_end(bufnr)
-          local disable_filetypes = { c = true, cpp = true }
-          return {
-            timeout_ms = 500,
-            lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-          }
-        end,
-      },
+
+      -- format on save
+      format_on_save = function(bufnr)
+        -- never fall back to LSP for these (avoid tsserver)
+        trim_empty_lines_at_end(bufnr)
+        local hard = { javascript = true, typescript = true, javascriptreact = true, typescriptreact = true, json = true, css = true }
+        return { timeout_ms = 800, lsp_fallback = not hard[vim.bo[bufnr].filetype] }
+      end,
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
-        typescript = { 'prettierd' },
-        typescriptreact = { 'prettierd' },
-        javascript = { 'prettierd' },
-        javascriptreact = { 'prettierd' },
-        json = { 'prettierd' },
-        css = { 'prettierd' },
+        typescript = { 'prettierd', 'prettier' },
+        typescriptreact = { 'prettierd', 'prettier' },
+        javascript = { 'prettierd', 'prettier' },
+        javascriptreact = { 'prettierd', 'prettier' },
+        json = { 'prettierd', 'prettier' },
+        css = { 'prettierd', 'prettier' },
       },
+      stop_after_first = false,
     },
   },
 }
