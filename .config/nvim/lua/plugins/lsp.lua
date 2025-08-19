@@ -1,6 +1,6 @@
 -- lua/plugins/lsp.lua
 return {
-  { 'williamboman/mason.nvim',     opts = {} },
+  { 'williamboman/mason.nvim', opts = {} },
 
   {
     'neovim/nvim-lspconfig',
@@ -63,7 +63,7 @@ return {
       -- Eslint
       lspconfig.eslint.setup {
         settings = {
-          format = false,  -- using conform
+          format = false, -- using conform
           validate = 'on', -- validate files
         },
         capabilities = lsp_capabilities(),
@@ -83,8 +83,8 @@ return {
       vim.o.completeopt = 'menu,menuone,noinsert'
       require('mini.completion').setup {
         set_vim_settings = true,
-        lsp_completion = { source_func = 'omnifunc', auto_setup = true },
-        delay = { completion = 100, info = nil, signature = 50 },
+        lsp_completion = { source_func = 'completefunc', auto_setup = true },
+        delay = { completion = 100, info = 500, signature = 50 },
       }
 
       -- Tab / Shift-Tab to cycle the popup menu; Enter to accept
@@ -119,5 +119,5 @@ return {
   },
 
   { 'echasnovski/mini.completion', event = 'InsertEnter', version = '*' },
-  { 'echasnovski/mini.snippets',   event = 'InsertEnter' },
+  { 'echasnovski/mini.snippets', event = 'InsertEnter' },
 }

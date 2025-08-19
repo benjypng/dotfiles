@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 return {
 	-- Font (pick your own if you like)
 	font = wezterm.font_with_fallback({ "MonoLisa Nerd Font" }),
-	font_size = 15.0,
+	font_size = 14.0,
 
 	-- Enable undercurl + underline colors
 	underline_thickness = "2px",
