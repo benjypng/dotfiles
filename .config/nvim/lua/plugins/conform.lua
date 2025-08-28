@@ -27,7 +27,7 @@ return {
         typescriptreact = { 'prettierd', 'prettier' },
         javascript = { 'prettierd', 'prettier' },
         javascriptreact = { 'prettierd', 'prettier' },
-        json = { 'prettierd', 'prettier' },
+        --        json = { 'prettierd', 'prettier' },
         css = { 'prettierd', 'prettier' },
       },
       stop_after_first = false,
