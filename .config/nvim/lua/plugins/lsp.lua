@@ -4,26 +4,66 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    -- Can remove comment if loading is slow
-    --    event = { 'BufReadPre', 'BufNewFile' },
+    -- event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'williamboman/mason.nvim',
-      'pmizio/typescript-tools.nvim',
-      'echasnovski/mini.completion',
+      -- REMOVE: 'pmizio/typescript-tools.nvim',
+      -- Completion stack (assuming you switched to nvim-cmp)
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
     },
     config = function()
       local lspconfig = require 'lspconfig'
 
-      -- Capabilities (enable snippet support for things like html/css/json, etc.)
+      -- nvim-cmp (keep your existing setup if you already added it)
+      vim.o.completeopt = 'menu,menuone,noinsert'
+      local cmp = require 'cmp'
+      local luasnip = require 'luasnip'
+      cmp.setup {
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert {
+          ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end,
+          ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end,
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<C-Space>'] = cmp.mapping.complete(),
+        },
+        sources = cmp.config.sources({ { name = 'nvim_lsp' }, { name = 'luasnip' } }, { { name = 'path' }, { name = 'buffer' } }),
+      }
+
+      -- Capabilities (inform servers we support cmp completion)
       local function lsp_capabilities()
         local caps = vim.lsp.protocol.make_client_capabilities()
-        caps.textDocument.completion.completionItem.snippetSupport = true
-        return caps
+        return require('cmp_nvim_lsp').default_capabilities(caps)
       end
 
-      -- on_attach: minimal maps, format-on-save, and your gd→vsplit behavior
+      -- on_attach: keep your maps, disable LSP formatting
       local function on_attach(client, bufnr)
-        -- hard-disable LSP formatting so it never competes with Prettier
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
 
@@ -35,16 +75,18 @@ return {
           vim.cmd 'vsplit'
           vim.lsp.buf.definition()
         end)
+
+        -- gD: prefer type definition if declaration is missing
         map('n', 'gD', function()
           vim.cmd 'vsplit'
           vim.lsp.buf.declaration()
         end)
+
         map('n', 'K', vim.lsp.buf.hover)
         map('n', '<leader>rn', vim.lsp.buf.rename)
         map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
       end
 
-      -- Mason (installer UI only; no mason-lspconfig)
       require('mason').setup()
 
       -- Lua
@@ -60,64 +102,32 @@ return {
         },
       }
 
-      -- Eslint
+      -- ESLint (keep formatting off)
       lspconfig.eslint.setup {
-        settings = {
-          format = false, -- using conform
-          validate = 'on', -- validate files
-        },
+        settings = { format = false, validate = 'on' },
         capabilities = lsp_capabilities(),
         on_attach = on_attach,
       }
 
-      -- TypeScript / JavaScript (handled by typescript-tools)
-      local ok_ts, ts_tools = pcall(require, 'typescript-tools')
-      if ok_ts then
-        ts_tools.setup {
-          capabilities = lsp_capabilities(),
-          on_attach = on_attach,
-        }
-      end
-
-      -- Minimal completion via mini.completion (no docs/info popup)
-      vim.o.completeopt = 'menu,menuone,noinsert'
-      require('mini.completion').setup {
-        set_vim_settings = true,
-        lsp_completion = { source_func = 'completefunc', auto_setup = true },
-        delay = { completion = 100, info = 500, signature = 50 },
-      }
-
-      -- Tab / Shift-Tab to cycle the popup menu; Enter to accept
-      local imap = function(lhs, rhs)
-        vim.keymap.set('i', lhs, rhs, { expr = true, silent = true })
-      end
-      imap('<Tab>', function()
-        return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
-      end)
-      imap('<S-Tab>', function()
-        return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
-      end)
-      imap('<CR>', function()
-        return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
-      end)
-
-      -- mini.snippets: load snippets + expose them to completion via in-process LSP
-      local gen_loader = require('mini.snippets').gen_loader
-      require('mini.snippets').setup {
-        snippets = {
-          -- 1) Language-scoped files from runtimepath: e.g.
-          --    ~/.config/nvim/snippets/javascript.json
-          --    ~/.config/nvim/snippets/typescript.json
-          gen_loader.from_lang(),
-
-          -- 2) (Optional) One global file visible in all buffers:
-          gen_loader.from_file(vim.fn.stdpath 'config' .. '/snippets/global.json'),
+      -- 🔁 Plain TSSERVER (via typescript-language-server)
+      lspconfig.ts_ls.setup {
+        capabilities = lsp_capabilities(),
+        on_attach = on_attach,
+        -- Keep tsserver out of Deno projects; prefer Node/React here
+        root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
+        single_file_support = false,
+        init_options = {
+          hostInfo = 'neovim',
+          -- preferences = { includeInlayParameterNameHints = 'all' }, -- optional
         },
       }
-      require('mini.snippets').start_lsp_server { match = false }
+
+      -- If you *do* use Deno elsewhere, also add:
+      -- lspconfig.denols.setup {
+      --   capabilities = lsp_capabilities(),
+      --   on_attach = on_attach,
+      --   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+      -- }
     end,
   },
-
-  { 'echasnovski/mini.completion', event = 'InsertEnter', version = '*' },
-  { 'echasnovski/mini.snippets', event = 'InsertEnter' },
 }
