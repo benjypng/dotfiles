@@ -1,7 +1,12 @@
+-- plugins/init.lua
 return {
   '3rd/image.nvim',
-  build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+  dependencies = { 'vhyrro/luarocks.nvim' },
   opts = {
-    processor = 'magick_cli',
+    backend = 'kitty', -- works with Ghostty because it implements the Kitty Graphics Protocol
+    integrations = {
+      markdown = { enabled = true }, -- show images in Markdown buffers
+      neorg = { enabled = true },
+    },
   },
 }
