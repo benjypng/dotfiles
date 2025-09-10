@@ -9,7 +9,7 @@ vim.opt.termguicolors = true
 vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20'
 
 -- Set nowrap
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 vim.opt.colorcolumn = '80'
 
