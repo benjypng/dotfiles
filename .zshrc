@@ -28,6 +28,7 @@ source ~/.zsh/themes/robbyrussell.zsh-theme
 alias vim="nvim"
 alias c="clear"
 alias la="ls -la"
+alias py="python3"
 
 #####################
 ### PLUGINS START ###

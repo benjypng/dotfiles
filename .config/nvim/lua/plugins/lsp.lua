@@ -18,9 +18,6 @@ return {
       'saadparwaiz1/cmp_luasnip',
     },
     config = function()
-      local lspconfig = require 'lspconfig'
-
-      -- nvim-cmp (keep your existing setup if you already added it)
       vim.o.completeopt = 'menu,menuone,noinsert'
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
@@ -90,7 +87,7 @@ return {
       require('mason').setup()
 
       -- Lua
-      lspconfig.lua_ls.setup {
+      vim.lsp.config('lua_ls', {
         capabilities = lsp_capabilities(),
         on_attach = on_attach,
         settings = {
@@ -100,34 +97,31 @@ return {
             telemetry = { enable = false },
           },
         },
-      }
+      })
+      vim.lsp.enable 'lua_ls'
 
       -- ESLint (keep formatting off)
-      lspconfig.eslint.setup {
+      vim.lsp.config('eslint', {
         settings = { format = false, validate = 'on' },
         capabilities = lsp_capabilities(),
         on_attach = on_attach,
-      }
+      })
+      vim.lsp.enable 'eslint'
 
       -- 🔁 Plain TSSERVER (via typescript-language-server)
-      lspconfig.ts_ls.setup {
+      local util = require 'lspconfig.util'
+      vim.lsp.config('ts_ls', {
         capabilities = lsp_capabilities(),
         on_attach = on_attach,
         -- Keep tsserver out of Deno projects; prefer Node/React here
-        root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
+        root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
         single_file_support = false,
         init_options = {
           hostInfo = 'neovim',
           -- preferences = { includeInlayParameterNameHints = 'all' }, -- optional
         },
-      }
-
-      -- If you *do* use Deno elsewhere, also add:
-      -- lspconfig.denols.setup {
-      --   capabilities = lsp_capabilities(),
-      --   on_attach = on_attach,
-      --   root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
-      -- }
+      })
+      vim.lsp.enable 'ts_ls'
     end,
   },
 }
