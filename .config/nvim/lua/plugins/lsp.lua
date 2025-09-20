@@ -109,12 +109,9 @@ return {
       vim.lsp.enable 'eslint'
 
       -- 🔁 Plain TSSERVER (via typescript-language-server)
-      local util = require 'lspconfig.util'
       vim.lsp.config('ts_ls', {
         capabilities = lsp_capabilities(),
         on_attach = on_attach,
-        -- Keep tsserver out of Deno projects; prefer Node/React here
-        root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
         single_file_support = false,
         init_options = {
           hostInfo = 'neovim',
