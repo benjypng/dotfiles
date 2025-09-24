@@ -65,7 +65,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   0
     outer.left =       0
     outer.bottom =     0
-    outer.top =        [{ monitor."main" = 38 }, { monitor."samsung" = 38 }, 0]
+    outer.top =        [{ monitor.'^built-in retina display$' = 0},{ monitor."main" = 38 }, { monitor."samsung" = 38 }, 0]
     outer.right =      0
 
 
