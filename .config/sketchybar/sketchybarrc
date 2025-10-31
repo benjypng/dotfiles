@@ -12,7 +12,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=38 blur_radius=30 color=0xff2d2a2e
+sketchybar --bar position=top height=31 blur_radius=30 color=0xff2d2a2e
 
 sketchybar --add event aerospace_workspace_change
 
