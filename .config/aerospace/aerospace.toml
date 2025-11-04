@@ -61,12 +61,12 @@ automatically-unhide-macos-hidden-apps = false
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    inner.horizontal = 0
-    inner.vertical =   0
-    outer.left =       0
-    outer.bottom =     0
-    outer.top =        [{ monitor.'^built-in retina display$' = 0},{ monitor."main" = 38 }, { monitor."samsung" = 38 }, 0]
-    outer.right =      0
+    inner.horizontal = 10
+    inner.vertical =   10
+    outer.left =       10
+    outer.bottom =     10
+    outer.top =        [{ monitor.'^built-in retina display$' = 0},{ monitor."main" = 38 }, { monitor."samsung" = 38 }, 10]
+    outer.right =      10
 
 
 # 'main' binding mode declaration
@@ -172,6 +172,6 @@ automatically-unhide-macos-hidden-apps = false
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
 
-#[[on-window-detected]]
-#    if.app-id = 'com.culturedcode.ThingsMac'
-#    run = ['layout floating']
+[[on-window-detected]]
+    if.app-id = 'com.culturedcode.ThingsMac'
+    run = ['layout floating']
