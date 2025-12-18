@@ -10,7 +10,7 @@ return {
   keys = {
     {
       '<leader>cc',
-      '<cmd>CodeCompanionChat<CR>',
+      '<cmd>CodeCompanionChat Toggle<CR>',
       desc = 'Open CodeCompanion Chat',
     },
   },
