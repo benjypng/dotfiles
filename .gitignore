@@ -4,3 +4,4 @@
 .config/rstudio
 .config/AWS\ VPN\ Client
 .config/AWSVPNClient
+secrets.lua
