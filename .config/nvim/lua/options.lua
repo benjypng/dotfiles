@@ -6,7 +6,7 @@
 vim.opt.termguicolors = true
 
 -- Set caret
--- vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:hor20'
+vim.o.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor'
 
 -- Set nowrap
 vim.opt.wrap = true
