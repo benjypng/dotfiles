@@ -11,17 +11,21 @@ if not API_TOKEN or API_TOKEN == '' then
   return
 end
 
--- --- HELPER: Markdown Converter ---
--- Converts the JSON tree into Markdown lines
 local function tree_to_markdown(blocks, level, lines)
   for _, block in ipairs(blocks) do
     local indent = string.rep('  ', level)
     local content = block.content or ''
 
-    -- Optional: Detect headings (Logseq stores them as regular blocks with properties)
-    -- If you use '#' in Logseq, it comes through as markdown anyway.
     if content ~= '' then
-      table.insert(lines, indent .. '- ' .. content)
+      local block_lines = vim.split(content, '\n', { plain = true })
+
+      for i, line in ipairs(block_lines) do
+        if i == 1 then
+          table.insert(lines, indent .. line)
+        else
+          table.insert(lines, indent .. line)
+        end
+      end
     end
 
     if block.children and #block.children > 0 then
@@ -30,7 +34,6 @@ local function tree_to_markdown(blocks, level, lines)
   end
 end
 
--- --- STEP 3: Fetch & Paste Content ---
 local function fetch_and_paste(page_name)
   print('Fetching content for: ' .. page_name)
 
@@ -56,7 +59,6 @@ local function fetch_and_paste(page_name)
   local lines = {}
   tree_to_markdown(data, 0, lines)
 
-  -- Paste into buffer
   vim.schedule(function()
     local buf = vim.api.nvim_get_current_buf()
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
@@ -64,13 +66,11 @@ local function fetch_and_paste(page_name)
   end)
 end
 
--- --- STEP 2: Trigger FZF ---
 local function pick_page(pages)
   fzf.fzf_exec(pages, {
     prompt = 'Logseq Pages> ',
     actions = {
       ['default'] = function(selected)
-        -- selected is a table like {"Page Name"}, get first element
         fetch_and_paste(selected[1])
       end,
     },
@@ -81,8 +81,6 @@ end
 local function start_logseq_pull()
   print 'Fetching page list from Logseq...'
 
-  -- We use a simple query to get just the names, which is lighter than getting all page objects
-  -- Query: Find all pages and return their original names
   local query = '[:find (pull ?b [*]) :where [?t :block/name "page"] [?b :block/tags ?t]]'
 
   local res = curl.post(API_URL, {
@@ -104,7 +102,6 @@ local function start_logseq_pull()
     return
   end
 
-  -- Flatten it for FZF
   local page_names = {}
   for _, item in ipairs(data) do
     if item[1] then
@@ -119,9 +116,7 @@ local function start_logseq_pull()
 
   table.sort(page_names)
 
-  -- Hand off to FZF
   pick_page(page_names)
 end
 
--- Command Registration
 vim.api.nvim_create_user_command('LogseqPull', start_logseq_pull, {})
