@@ -1,7 +1,9 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    version = false,
     build = ':TSUpdate',
+    branch = 'master',
     opts = {
       ensure_installed = { 'typescript', 'javascript', 'lua' },
       auto_install = true,

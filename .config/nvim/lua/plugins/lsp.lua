@@ -108,7 +108,7 @@ return {
       })
       vim.lsp.enable 'eslint'
 
-      -- 🔁 Plain TSSERVER (via typescript-language-server)
+      -- Plain TSSERVER (via typescript-language-server)
       vim.lsp.config('ts_ls', {
         capabilities = lsp_capabilities(),
         on_attach = on_attach,
@@ -119,6 +119,10 @@ return {
         },
       })
       vim.lsp.enable 'ts_ls'
+
+      -- Swift
+      vim.lsp.config('sourcekit', {})
+      vim.lsp.enable 'sourcekit'
     end,
   },
 }
