@@ -1,6 +1,34 @@
+# --- GitHub Dark Theme Manual Override ---
+background = #0d1117
+foreground = #c9d1d9
+selection-background = #58a6ff
+selection-foreground = #0d1117
+cursor-color = #58a6ff
+
+# Palette (Normal)
+palette = 0=#484f58
+palette = 1=#ff7b72
+palette = 2=#3fb950
+palette = 3=#d29922
+palette = 4=#58a6ff
+palette = 5=#bc8cff
+palette = 6=#39c5cf
+palette = 7=#b1bac4
+
+# Palette (Bright)
+palette = 8=#6e7681
+palette = 9=#ffa198
+palette = 10=#56d364
+palette = 11=#e3b341
+palette = 12=#79c0ff
+palette = 13=#d2a8ff
+palette = 14=#56d364
+palette = 15=#f0f6fc
+# -----------------------------------------
+
+term = xterm-256color
 font-family = "MonoLisa Nerd Font"
 font-size = 14
 adjust-cursor-thickness = 10
-command = /opt/homebrew/bin/tmux
 adjust-cell-height = 2
 adjust-cell-width = -1
