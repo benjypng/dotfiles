@@ -14,7 +14,7 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Save All
-map('n', ';;', ':w<CR>:echo "SAVED SAVED SAVED"<CR>')
+map('n', ';;', ':w<CR>')
 
 -- Quit
 map('n', '<leader>q', ':q<CR>')

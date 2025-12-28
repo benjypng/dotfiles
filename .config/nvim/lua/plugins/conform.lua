@@ -18,6 +18,7 @@ return {
         -- never fall back to LSP for these (avoid tsserver)
         trim_empty_lines_at_end(bufnr)
         local hard = { javascript = true, typescript = true, javascriptreact = true, typescriptreact = true, json = true, css = true }
+        print 'Formatted'
         return { timeout_ms = 800, lsp_fallback = not hard[vim.bo[bufnr].filetype] }
       end,
       formatters_by_ft = {
