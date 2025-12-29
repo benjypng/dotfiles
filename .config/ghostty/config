@@ -32,3 +32,4 @@ font-size = 14
 adjust-cursor-thickness = 10
 adjust-cell-height = 2
 adjust-cell-width = -1
+command = /opt/homebrew/bin/tmux
