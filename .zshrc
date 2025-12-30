@@ -30,6 +30,9 @@ alias c="clear"
 alias la="ls -la"
 alias py="python3"
 
+# Gif It
+source ~/.zsh/custom/gifit.sh
+
 #####################
 ### PLUGINS START ###
 #####################
