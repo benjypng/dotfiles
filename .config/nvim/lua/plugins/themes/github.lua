@@ -1,3 +1,6 @@
+local hour = tonumber(os.date '%H')
+local theme
+
 return {
   'projekt0n/github-nvim-theme',
   name = 'github-theme',
@@ -5,6 +8,12 @@ return {
   priority = 1000,
   config = function()
     require('github-theme').setup {}
-    vim.cmd 'colorscheme github_dark'
+    local theme
+    if hour >= 8 and hour < 18 then
+      theme = 'github_light'
+    else
+      theme = 'github_dark'
+    end
+    vim.cmd('colorscheme ' .. theme)
   end,
 }
