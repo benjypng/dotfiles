@@ -23,7 +23,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>hkgnp</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
@@ -32,6 +32,27 @@
 	<string>Clear Clipboard</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>clear clipboard</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Clear Clipboard</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>D42489EE-06A4-4478-9B33-06F81E375C04</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -54,27 +75,6 @@
 			<string>1B9533AE-727E-43C6-BB89-CB4FE58D06A0</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>clear clipboard</string>
-				<key>subtext</key>
-				<string></string>
-				<key>text</key>
-				<string>Clear Clipboard</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>D42489EE-06A4-4478-9B33-06F81E375C04</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
