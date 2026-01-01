@@ -12,11 +12,10 @@ return {
     lazy = false,
     opts = {
       notify_on_error = false,
-
       -- format on save
       format_on_save = function(bufnr)
-        -- never fall back to LSP for these (avoid tsserver)
         trim_empty_lines_at_end(bufnr)
+        -- never fall back to LSP for these (avoid tsserver)
         local hard = { javascript = true, typescript = true, javascriptreact = true, typescriptreact = true, json = true, css = true }
         print 'Formatted'
         return { timeout_ms = 800, lsp_fallback = not hard[vim.bo[bufnr].filetype] }
@@ -28,7 +27,7 @@ return {
         typescriptreact = { 'prettierd', 'eslint_d' },
         javascript = { 'prettierd', 'eslint_d' },
         javascriptreact = { 'prettierd', 'eslint_d' },
-        json = { 'jsonls' },
+        json = { 'prettierd', 'jsonls' },
         css = { 'prettierd', 'eslint_d' },
       },
       stop_after_first = false,
