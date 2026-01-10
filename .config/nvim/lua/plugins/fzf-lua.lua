@@ -39,7 +39,7 @@ return {
     vim.keymap.set('n', '<leader>sh', fzf.search_history, { desc = '[S]earch [H]istory' })
     vim.keymap.set('n', '<leader>st', fzf.git_status, { desc = '[S]earch git s[T]atus' })
     vim.keymap.set('n', '<leader>ca', fzf.lsp_code_actions, { desc = '[C]ode [A]ctions' })
-    vim.keymap.set('n', '<leader>sd', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
+    vim.keymap.set('n', '<leader>sr', fzf.lsp_references, { desc = '[G]o to [R]eferences' })
     vim.keymap.set('n', '<leader>sc', function()
       fzf.files { cwd = vim.fn.expand '~/Documents/Code_Projects' }
     end, { desc = '[S]earch [F]iles (Code Projects)' })

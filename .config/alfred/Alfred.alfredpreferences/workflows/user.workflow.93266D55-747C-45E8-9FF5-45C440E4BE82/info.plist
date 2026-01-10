@@ -74,7 +74,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>python3 /Users/ben/Documents/Code_Projects/logseq-db-backup/backup.py --dir /Users/ben/logseq/graphs/vault/ --backup-dir /Users/ben/Documents/logseq-backups/</string>
+				<string>python3 /Users/ben/Documents/Code_Projects/logseq-db-backup/backup.py --dir /Users/ben/logseq/graphs/habitat/ --backup-dir /Users/ben/Documents/logseq-backups/</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>

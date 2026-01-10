@@ -69,19 +69,16 @@ return {
         end
 
         map('n', 'gd', function()
-          vim.cmd 'vsplit'
           vim.lsp.buf.definition()
         end)
 
         -- gD: prefer type definition if declaration is missing
         map('n', 'gD', function()
-          vim.cmd 'vsplit'
           vim.lsp.buf.declaration()
         end)
 
         map('n', 'K', vim.lsp.buf.hover)
         map('n', '<leader>rn', vim.lsp.buf.rename)
-        map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
       end
 
       require('mason').setup()
