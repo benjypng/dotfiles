@@ -27,7 +27,7 @@ palette = 15=#f0f6fc
 # -----------------------------------------
 
 term = xterm-256color
-font-family = "MonoLisa Nerd Font"
+font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 14
 adjust-cursor-thickness = 10
 adjust-cell-height = 2
