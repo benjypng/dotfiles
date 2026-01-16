@@ -1,36 +1,35 @@
-local function trim_empty_lines_at_end(bufnr)
-  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)
-  while #lines > 0 and lines[#lines]:match '^%s*$' do
-    table.remove(lines)
-  end
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
-end
-
 return {
-  {
-    'stevearc/conform.nvim',
-    lazy = false,
-    opts = {
-      notify_on_error = false,
-      -- format on save
-      format_on_save = function(bufnr)
-        trim_empty_lines_at_end(bufnr)
-        -- never fall back to LSP for these (avoid tsserver)
-        local hard = { javascript = true, typescript = true, javascriptreact = true, typescriptreact = true, json = true, css = true }
-        print 'Formatted'
-        return { timeout_ms = 800, lsp_fallback = not hard[vim.bo[bufnr].filetype] }
+  'stevearc/conform.nvim',
+  event = { 'BufWritePre' },
+  cmd = { 'ConformInfo' },
+  keys = {
+    {
+      '<leader>f',
+      function()
+        require('conform').format { async = true, lsp_format = 'never' }
       end,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        python = { 'isort', 'black' },
-        typescript = { 'prettierd', 'eslint_d' },
-        typescriptreact = { 'prettierd', 'eslint_d' },
-        javascript = { 'prettierd', 'eslint_d' },
-        javascriptreact = { 'prettierd', 'eslint_d' },
-        json = { 'prettierd', 'jsonls' },
-        css = { 'prettierd', 'eslint_d' },
-      },
-      stop_after_first = false,
+      mode = '',
+      desc = '[F]ormat buffer',
+    },
+  },
+  opts = {
+    notify_on_error = false,
+    format_on_save = function(bufnr)
+      local lsp_format_opt = 'never'
+      return {
+        timeout_ms = 500,
+        lsp_format = lsp_format_opt,
+      }
+    end,
+    formatters_by_ft = {
+      lua = { 'stylua' },
+      javascript = { 'prettierd', 'eslint_d' },
+      javascriptreact = { 'prettierd', 'eslint_d' },
+      typescript = { 'prettierd', 'eslint_d' },
+      typescriptreact = { 'prettierd', 'eslint_d' },
+      css = { 'prettierd' },
+      json = { 'prettierd' },
+      python = { 'isort', 'black' },
     },
   },
 }
