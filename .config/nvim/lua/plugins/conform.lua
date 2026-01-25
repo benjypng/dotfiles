@@ -22,10 +22,10 @@ return {
       }
     end,
     formatters_by_ft = {
-      javascript = { 'biome', 'biome-organize-imports' },
-      javascriptreact = { 'biome', 'biome-organize-imports' },
-      typescript = { 'biome', 'biome-organize-imports' },
-      typescriptreact = { 'biome', 'biome-organize-imports' },
+      javascript = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
+      javascriptreact = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
+      typescript = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
+      typescriptreact = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
       json = { 'biome', 'biome-organize-imports' },
       -- javascript = { 'prettierd', 'eslint_d' },
       -- javascriptreact = { 'prettierd', 'eslint_d' },
