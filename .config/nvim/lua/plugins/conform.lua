@@ -1,3 +1,17 @@
+local function get_js_formatters(bufnr)
+  local biome_config = vim.fs.find({ 'biome.json', 'biome.jsonc' }, {
+    upward = true,
+    stop = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+    path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+  })[1]
+
+  if biome_config then
+    return { 'biome' }
+  else
+    return { 'prettier', 'eslint_d' }
+  end
+end
+
 return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
@@ -14,25 +28,20 @@ return {
   },
   opts = {
     notify_on_error = false,
-    format_on_save = function(bufnr)
-      local lsp_format_opt = 'never'
-      return {
-        timeout_ms = 500,
-        lsp_format = lsp_format_opt,
-      }
-    end,
+    --    format_on_save = function(bufnr)
+    --      local lsp_format_opt = 'never'
+    --      return {
+    --        timeout_ms = 500,
+    --        lsp_format = lsp_format_opt,
+    --      }
+    --    end,
     formatters_by_ft = {
-      javascript = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
-      javascriptreact = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
-      typescript = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
-      typescriptreact = { 'biome', 'biome-organize-imports', 'prettierd', 'eslint_d', stop_after_first = true },
-      json = { 'biome', 'biome-organize-imports' },
-      -- javascript = { 'prettierd', 'eslint_d' },
-      -- javascriptreact = { 'prettierd', 'eslint_d' },
-      -- typescript = { 'prettierd', 'eslint_d' },
-      -- typescriptreact = { 'prettierd', 'eslint_d' },
-      -- json = { 'prettierd' },
-      css = { 'prettierd' },
+      javascript = get_js_formatters,
+      javascriptreact = get_js_formatters,
+      typescript = get_js_formatters,
+      typescriptreact = get_js_formatters,
+      json = { 'prettier' },
+      css = { 'prettier' },
       python = { 'isort', 'black' },
       lua = { 'stylua' },
     },
