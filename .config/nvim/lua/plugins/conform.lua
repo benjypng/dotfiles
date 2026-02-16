@@ -1,7 +1,6 @@
 local function get_js_formatters(bufnr)
   local biome_config = vim.fs.find({ 'biome.json', 'biome.jsonc' }, {
     upward = true,
-    stop = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
     path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
   })[1]
 
@@ -27,7 +26,7 @@ return {
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
       local lsp_format_opt = 'never'
       return {
