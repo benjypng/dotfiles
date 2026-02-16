@@ -26,7 +26,7 @@ return {
     },
   },
   opts = {
-    notify_on_error = true,
+    notify_on_error = false,
     format_on_save = function(bufnr)
       local lsp_format_opt = 'never'
       return {
