@@ -57,6 +57,7 @@ alias vim="nvim"
 alias c="clear"
 alias la="ls -la"
 alias py="python3"
+alias openclaw="~/.npm-global/bin/openclaw"
 
 # Gif It
 source ~/.zsh/custom/gifit.sh
