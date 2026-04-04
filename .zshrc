@@ -106,4 +106,6 @@ if [[ "$IS_MACOS" == true ]] && command -v brew &>/dev/null; then
 fi
 
 # OpenClaw Completion
-source "/home/unraid/.openclaw/completions/openclaw.zsh"
+if [[ "$IS_MACOS" != true ]]; then
+  source "/home/unraid/.openclaw/completions/openclaw.zsh"
+fi
