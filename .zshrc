@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 # OS Detection
 if [[ "$OSTYPE" == "darwin"* ]]; then
   IS_MACOS=true
@@ -101,3 +104,6 @@ if [[ "$IS_MACOS" == true ]] && command -v brew &>/dev/null; then
   [[ -d "$_lsof_bin" ]] && export PATH="$_lsof_bin:$PATH"
   unset _pg_bin _lsof_bin
 fi
+
+# OpenClaw Completion
+source "/home/unraid/.openclaw/completions/openclaw.zsh"
