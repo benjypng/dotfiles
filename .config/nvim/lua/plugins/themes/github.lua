@@ -8,11 +8,13 @@ return {
   priority = 1000,
   config = function()
     require('github-theme').setup {}
+
     if hour >= 8 and hour < 18 then
       theme = 'github_light_default'
     else
       theme = 'github_dark_default'
     end
-    vim.cmd('colorscheme ' .. theme)
+
+    vim.cmd.colorscheme(theme)
   end,
 }
