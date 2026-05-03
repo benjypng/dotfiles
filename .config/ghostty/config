@@ -26,10 +26,10 @@ palette = 14=#56d364
 palette = 15=#f0f6fc
 # -----------------------------------------
 
-term = xterm-256color
 font-family = "Maple Mono NF"
 font-size = 15
 adjust-cursor-thickness = 10
 adjust-cell-height = 2
 adjust-cell-width = -1
 command = /bin/zsh -lc "exec tmux"
+background-opacity = 0.8
