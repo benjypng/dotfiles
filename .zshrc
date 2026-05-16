@@ -76,6 +76,7 @@ eval "$(zoxide init zsh)"
 _autosuggest_paths=(
   "$(brew --prefix zsh-autosuggestions 2>/dev/null)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
   "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
   "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 )
 for _p in "${_autosuggest_paths[@]}"; do
@@ -89,6 +90,7 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 _syntax_paths=(
   "$(brew --prefix zsh-syntax-highlighting 2>/dev/null)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
   "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
   "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 )
 for _p in "${_syntax_paths[@]}"; do
@@ -106,6 +108,6 @@ if [[ "$IS_MACOS" == true ]] && command -v brew &>/dev/null; then
 fi
 
 # OpenClaw Completion
-if [[ "$IS_MACOS" != true ]]; then
+if [[ "$IS_MACOS" != true && -f "/home/unraid/.openclaw/completions/openclaw.zsh" ]]; then
   source "/home/unraid/.openclaw/completions/openclaw.zsh"
 fi

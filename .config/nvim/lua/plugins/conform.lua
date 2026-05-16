@@ -7,7 +7,7 @@ local function get_js_formatters(bufnr)
   if biome_config then
     return { 'biome' }
   else
-    return { 'prettier' }
+    return { 'prettierd' }
   end
 end
 
@@ -36,13 +36,13 @@ return {
       javascriptreact = get_js_formatters,
       typescript = get_js_formatters,
       typescriptreact = get_js_formatters,
-      json = { 'prettier' },
-      jsonc = { 'prettier' },
-      css = { 'prettier' },
-      scss = { 'prettier' },
-      html = { 'prettier' },
-      markdown = { 'prettier' },
-      yaml = { 'prettier' },
+      json = { 'prettierd' },
+      jsonc = { 'prettierd' },
+      css = { 'prettierd' },
+      scss = { 'prettierd' },
+      html = { 'prettierd' },
+      markdown = { 'prettierd' },
+      yaml = { 'prettierd' },
       python = { 'isort', 'black' },
       lua = { 'stylua' },
     },
