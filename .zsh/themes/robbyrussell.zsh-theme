@@ -27,5 +27,12 @@ function git_prompt_info() {
   fi
 }
 
-# Prompt: arrow + muted-rose directory block + git block
-PROMPT='%(?:%F{#A6E22E}%B➜%b%f :%F{#FF4757}%B➜%b%f )%K{#EB6F92}%F{#272822}%B %c %b%f%k%F{#EB6F92}%f $(git_prompt_info)'
+# SSH indicator — orange block with user@host when connected remotely
+function ssh_prompt_info() {
+  if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" ]]; then
+    echo "%K{#FD971F}%F{#272822}%B SSH %n@%m %b%f%k%F{#FD971F}%f "
+  fi
+}
+
+# Prompt: arrow + ssh block (if remote) + muted-rose directory block + git block
+PROMPT='%(?:%F{#A6E22E}%B➜%b%f :%F{#FF4757}%B➜%b%f )$(ssh_prompt_info)%K{#EB6F92}%F{#272822}%B %c %b%f%k%F{#EB6F92}%f $(git_prompt_info)'
