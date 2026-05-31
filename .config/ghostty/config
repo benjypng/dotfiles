@@ -31,5 +31,5 @@ font-size = 15
 adjust-cursor-thickness = 10
 adjust-cell-height = 2
 adjust-cell-width = -1
-command = /bin/zsh -lc "exec tmux"
+# command = /bin/zsh -lc "exec tmux"
 background-opacity = 0.8
