@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Directories to scan (customise this)
+dirs=(~/Documents/Code_Projects)
+
+# Pick a project (arg wins, otherwise fzf)
+if [[ -n "${1:-}" ]]; then
+  selected=$1
+else
+  selected=$(find "${dirs[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+[[ -z "$selected" ]] && exit 0
+
+label=$(basename "$selected" | tr . _)
+
+# Find existing workspace by label
+workspace_id=$(herdr workspace list \
+  | jq -r --arg label "$label" \
+      '.. | objects | select(.label? == $label) | .workspace_id // empty' \
+  | head -n1)
+
+if [[ -z "$workspace_id" ]]; then
+  # Create and focus in one step
+  herdr workspace create --cwd "$selected" --label "$label" --focus >/dev/null
+else
+  # Already exists, just focus it
+  herdr workspace focus "$workspace_id" >/dev/null
+fi

@@ -1,0 +1,6 @@
+onboarding = false
+
+[[keys.command]]
+key = "prefix+f"
+type = "pane"
+command = "$HOME/.config/herdr/herdr-sessionizer/herdr-sessionizer"
