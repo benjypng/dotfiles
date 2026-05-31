@@ -5,3 +5,6 @@
 .config/AWS\ VPN\ Client
 .config/AWSVPNClient
 secrets.lua
+.config/herdr/session.json
+.config/herdr/herdr-server.log
+.config/herdr/herdr-client.log
