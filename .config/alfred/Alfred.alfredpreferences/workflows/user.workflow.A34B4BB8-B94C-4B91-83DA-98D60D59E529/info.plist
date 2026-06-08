@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9B92C469-D1E2-4EF5-9D9A-E4DDD3BD6DCD</string>
+				<string>F0817457-AAFC-4C83-BECA-F5419038D3FB</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -74,27 +74,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>skipqueryencode</key>
-				<false/>
-				<key>skipvarencode</key>
-				<false/>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>logseq://x-callback-url/quickCapture?url=&amp;title=&amp;append=true&amp;content={query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>9B92C469-D1E2-4EF5-9D9A-E4DDD3BD6DCD</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -116,23 +95,38 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>ls-</string>
-				<key>subtext</key>
-				<string>Using Logseq's quickCapture</string>
-				<key>text</key>
-				<string>Quick note to Logseq (custom page)</string>
-				<key>withspace</key>
+				<key>concurrently</key>
 				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>read -r mon day yr &lt;&lt;&lt; "$(date '+%b %-d %Y')"
+case $day in
+  1|21|31) sfx=st ;;
+  2|22)    sfx=nd ;;
+  3|23)    sfx=rd ;;
+  *)       sfx=th ;;
+esac
+page="$mon ${day}${sfx}, $yr"
+
+/opt/homebrew/bin/logseq upsert block \
+  --graph vaulty \
+  --target-page "$page" \
+  --content "$1" \
+  --output json \</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7CE1256C-7564-4DFE-9B9F-BDB4C4FE9F7A</string>
+			<string>F0817457-AAFC-4C83-BECA-F5419038D3FB</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -181,6 +175,27 @@
 			<string>8685F8E3-A090-4528-92FC-170D145022DF</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ls-</string>
+				<key>subtext</key>
+				<string>Using Logseq's quickCapture</string>
+				<key>text</key>
+				<string>Quick note to Logseq (custom page)</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>7CE1256C-7564-4DFE-9B9F-BDB4C4FE9F7A</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -243,12 +258,12 @@
 			<key>ypos</key>
 			<real>330</real>
 		</dict>
-		<key>9B92C469-D1E2-4EF5-9D9A-E4DDD3BD6DCD</key>
+		<key>F0817457-AAFC-4C83-BECA-F5419038D3FB</key>
 		<dict>
 			<key>xpos</key>
-			<real>495</real>
+			<real>715</real>
 			<key>ypos</key>
-			<real>120</real>
+			<real>155</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
