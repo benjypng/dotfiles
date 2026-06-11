@@ -111,3 +111,4 @@ fi
 if [[ "$IS_MACOS" != true && -f "/home/unraid/.openclaw/completions/openclaw.zsh" ]]; then
   source "/home/unraid/.openclaw/completions/openclaw.zsh"
 fi
+export PATH="$HOME/.local/bin:$PATH"
